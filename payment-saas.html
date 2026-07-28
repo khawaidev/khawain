@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pay for Micro SaaS — Khawaimedia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        :root {
+            --cream: #F4EFE3;
+            --cream-2: #EDE6D4;
+            --cream-3: #E7DFC9;
+            --ink: #0A0A0A;
+            --ink-2: #1A1A1A;
+            --grey: #6B6B6B;
+            --grey-light: #9A9A9A;
+            --grey-faint: #B8B3A7;
+            --lime: #B6FF3C;
+            --lime-glow: rgba(182, 255, 60, 0.55);
+            --line: rgba(10, 10, 10, 0.10);
+            --line-2: rgba(10, 10, 10, 0.18);
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-bg-strong: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.85);
+            --glass-shadow: 0 8px 30px rgba(40, 30, 10, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --glass-shadow-lg: 0 20px 60px rgba(40, 30, 10, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --r-sm: 10px;
+            --r-md: 16px;
+            --r-lg: 22px;
+            --r-xl: 32px;
+            --r-2xl: 44px;
+            --maxw: 1440px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html, body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+
+        body {
+            background:
+                radial-gradient(1100px 700px at 8% -5%, rgba(255, 245, 210, 0.7) 0%, transparent 55%),
+                radial-gradient(900px 600px at 100% 10%, rgba(220, 230, 255, 0.45) 0%, transparent 55%),
+                radial-gradient(800px 600px at 50% 100%, rgba(255, 225, 180, 0.35) 0%, transparent 60%),
+                var(--cream);
+            min-height: 100vh;
+            line-height: 1.5;
+            padding-top: 70px
+        }
+
+        a { color: inherit; text-decoration: none }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit }
+
+        .page {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 22px
+        }
+
+        @media(min-width:768px) {
+            .page { padding: 30px 38px }
+        }
+
+        @media(min-width:1200px) {
+            .page { padding: 34px 48px }
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 999px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+            width: calc(100% - 40px);
+            max-width: var(--maxw);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .brand-logo {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            font-style: italic;
+        }
+
+        .header-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 18px;
+            border-radius: 999px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ink);
+            transition: transform .2s ease, background .2s ease;
+        }
+
+        .header-back:hover {
+            transform: translateY(-1px);
+            background: var(--glass-bg-strong)
+        }
+
+        .header-back svg {
+            width: 16px;
+            height: 16px
+        }
+
+        .payment-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 8px 80px;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--grey);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .payment-title {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: clamp(32px, 4vw, 48px);
+            letter-spacing: -0.02em;
+            margin-top: 12px;
+            color: var(--ink);
+        }
+
+        .payment-subtitle {
+            font-size: 16px;
+            color: var(--grey);
+            margin-top: 12px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .payment-card {
+            border-radius: var(--r-xl);
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow-lg);
+            padding: 36px;
+            margin-bottom: 24px;
+        }
+
+        .price-display {
+            text-align: center;
+            padding: 24px;
+            border-radius: var(--r-lg);
+            background: #fff;
+            border: 1px solid var(--line);
+            margin-bottom: 28px;
+        }
+
+        .price-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--grey);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 42px;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+        }
+
+        .price-amount span {
+            font-size: 20px;
+            color: var(--grey);
+            font-weight: 400;
+        }
+
+        .price-note {
+            font-size: 13px;
+            color: var(--grey-light);
+            margin-top: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--r-md);
+            background: #fff;
+            border: 1px solid var(--line-2);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--ink);
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--ink);
+            box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.08);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 42px;
+        }
+
+        .amount-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .amount-option {
+            padding: 14px;
+            border-radius: var(--r-md);
+            background: #fff;
+            border: 1px solid var(--line);
+            text-align: center;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .amount-option:hover {
+            border-color: var(--ink);
+            transform: translateY(-1px);
+        }
+
+        .amount-option.selected {
+            background: var(--ink);
+            color: #fff;
+            border-color: var(--ink);
+        }
+
+        .amount-option .amount {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .amount-option .label {
+            font-size: 11px;
+            color: var(--grey);
+            margin-top: 2px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .amount-option.selected .label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .custom-amount-wrap {
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            transition: transform .2s ease, box-shadow .2s ease;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn svg {
+            width: 18px;
+            height: 18px;
+            transition: transform .2s ease;
+        }
+
+        .submit-btn:hover svg {
+            transform: translateX(3px);
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--grey-light);
+        }
+
+        .security-note svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .alert {
+            padding: 16px 20px;
+            border-radius: var(--r-md);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: rgba(182, 255, 60, 0.15);
+            border: 1px solid rgba(182, 255, 60, 0.4);
+            color: var(--ink);
+        }
+
+        .alert-error {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            color: #c00;
+        }
+
+        .alert-info {
+            background: rgba(100, 150, 255, 0.1);
+            border: 1px solid rgba(100, 150, 255, 0.3);
+            color: var(--ink);
+        }
+
+        .hidden { display: none !important; }
+
+        .success-container {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--lime), #8fd14f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--ink);
+        }
+
+        .success-title {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .success-message {
+            font-size: 16px;
+            color: var(--grey);
+            max-width: 400px;
+            margin: 0 auto 32px;
+        }
+
+        .success-details {
+            padding: 20px;
+            border-radius: var(--r-md);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: inline-block;
+            text-align: left;
+        }
+
+        .success-details .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .success-details .row:last-child {
+            border-bottom: none;
+        }
+
+        .success-details .key {
+            font-size: 13px;
+            color: var(--grey);
+        }
+
+        .success-details .value {
+            font-size: 13px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="brand">
+                <img class="brand-logo" src="https://pub-475cca0b7414418d866128a4b30dfd97.r2.dev/images/logo.png" alt="khawaimedia logo" />
+                <span class="brand-name">khawaimedia</span>
+            </div>
+            <a href="index.html" class="header-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12 19 5 12 12 5"/>
+                </svg>
+                Back
+            </a>
+        </header>
+
+        <div class="payment-container" id="paymentContainer">
+            <div class="payment-header">
+                <span class="eyebrow">// micro saas</span>
+                <h1 class="payment-title">Product Engineering Payment</h1>
+                <p class="payment-subtitle">Secure your build with 50% upfront. The remaining 50% is due upon delivery.</p>
+            </div>
+
+            <div class="payment-card">
+                <div class="price-display">
+                    <div class="price-label">50% Upfront Payment</div>
+                    <div class="price-amount" id="displayAmount">$<span id="amountValue">0</span></div>
+                    <div class="price-note">Total project value: $<span id="totalValue">0</span></div>
+                </div>
+
+                <div id="alertBox" class="hidden"></div>
+
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label class="form-label">Select Package</label>
+                        <div class="amount-selector">
+                            <div class="amount-option" data-total="1399" data-upfront="700">
+                                <div class="amount">$1,399</div>
+                                <div class="label">MVP</div>
+                            </div>
+                            <div class="amount-option" data-total="2999" data-upfront="1500">
+                                <div class="amount">$2,999</div>
+                                <div class="label">Startup</div>
+                            </div>
+                            <div class="amount-option" data-total="4999" data-upfront="2500">
+                                <div class="amount">$4,999</div>
+                                <div class="label">Growth</div>
+                            </div>
+                            <div class="amount-option" data-total="7999" data-upfront="4000">
+                                <div class="amount">$7,999</div>
+                                <div class="label">Scale</div>
+                            </div>
+                            <div class="amount-option" data-total="10000" data-upfront="5000">
+                                <div class="amount">$10,000</div>
+                                <div class="label">Enterprise</div>
+                            </div>
+                            <div class="amount-option" data-custom="true">
+                                <div class="amount">Custom</div>
+                                <div class="label">Specify</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="custom-amount-wrap hidden" id="customAmountWrap">
+                        <label class="form-label">Custom Amount (Total Project Value)</label>
+                        <input type="number" class="form-input" id="customAmount" placeholder="Enter amount between 1399 and 10000" min="1399" max="10000" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-input" id="userName" placeholder="John Doe" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" id="userEmail" placeholder="john@company.com" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Project Description (Optional)</label>
+                        <textarea class="form-textarea" id="projectDescription" placeholder="Tell us about your SaaS or web app project..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="payButton">
+                        <span id="payButtonText">Pay with Razorpay</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="security-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    Secured by Razorpay · 256-bit encryption
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-container hidden" id="successContainer">
+            <div class="payment-card">
+                <div class="success-container">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <h2 class="success-title">Payment Successful!</h2>
+                    <p class="success-message">Thank you for your payment. We'll be in touch within 24 hours to start your project.</p>
+                    <div class="success-details" id="successDetails"></div>
+                    <a href="index.html" class="submit-btn" style="margin-top: 32px; display: inline-flex;">
+                        Return to Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID'; // Replace with actual key
+
+        let selectedTotal = 0;
+        let selectedUpfront = 0;
+        let isCustom = false;
+
+        const amountOptions = document.querySelectorAll('.amount-option');
+        const customAmountWrap = document.getElementById('customAmountWrap');
+        const customAmountInput = document.getElementById('customAmount');
+        const displayAmount = document.getElementById('amountValue');
+        const totalValue = document.getElementById('totalValue');
+        const paymentForm = document.getElementById('paymentForm');
+        const payButton = document.getElementById('payButton');
+        const payButtonText = document.getElementById('payButtonText');
+        const alertBox = document.getElementById('alertBox');
+
+        function showAlert(message, type) {
+            alertBox.className = `alert alert-${type}`;
+            alertBox.textContent = message;
+            alertBox.classList.remove('hidden');
+        }
+
+        function hideAlert() {
+            alertBox.classList.add('hidden');
+        }
+
+        function updateDisplay() {
+            if (isCustom) {
+                const customVal = parseInt(customAmountInput.value) || 0;
+                selectedTotal = customVal;
+                selectedUpfront = Math.round(customVal * 0.5);
+            }
+            displayAmount.textContent = selectedUpfront.toLocaleString();
+            totalValue.textContent = selectedTotal.toLocaleString();
+        }
+
+        amountOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                amountOptions.forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+                isCustom = option.dataset.custom === 'true';
+                
+                if (isCustom) {
+                    customAmountWrap.classList.remove('hidden');
+                    selectedTotal = parseInt(customAmountInput.value) || 0;
+                    selectedUpfront = Math.round(selectedTotal * 0.5);
+                } else {
+                    customAmountWrap.classList.add('hidden');
+                    selectedTotal = parseInt(option.dataset.total);
+                    selectedUpfront = parseInt(option.dataset.upfront);
+                }
+                updateDisplay();
+                hideAlert();
+            });
+        });
+
+        customAmountInput.addEventListener('input', () => {
+            if (isCustom) {
+                const val = parseInt(customAmountInput.value) || 0;
+                if (val > 0 && val < 1399) {
+                    showAlert('Minimum project value is $1,399', 'error');
+                } else if (val > 10000) {
+                    showAlert('Maximum preset is $10,000. Contact us for higher amounts.', 'info');
+                }
+                updateDisplay();
+            }
+        });
+
+        paymentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert();
+
+            const userName = document.getElementById('userName').value.trim();
+            const userEmail = document.getElementById('userEmail').value.trim();
+            const projectDescription = document.getElementById('projectDescription').value.trim();
+
+            if (!userName || !userEmail) {
+                showAlert('Please fill in your name and email.', 'error');
+                return;
+            }
+
+            if (!selectedUpfront || selectedUpfront < 1) {
+                showAlert('Please select a package or enter a custom amount.', 'error');
+                return;
+            }
+
+            payButton.disabled = true;
+            payButtonText.textContent = 'Creating order...';
+            const API_BASE = window.location.port === '3001' ? '' : 'http://localhost:3001';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/create-saas-order`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: selectedUpfront,
+                        userName,
+                        userEmail,
+                        projectDescription
+                    })
+                });
+
+                let data;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    throw new Error(`Invalid server response (${response.status}). Ensure backend is running at http://localhost:3001`);
+                }
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to create order');
+                }
+
+                const options = {
+                    key: RAZORPAY_KEY_ID,
+                    amount: data.amount,
+                    currency: data.currency,
+                    name: 'khawaimedia',
+                    description: `Micro SaaS Project - 50% Upfront ($${selectedUpfront})`,
+                    order_id: data.orderId,
+                    prefill: {
+                        name: userName,
+                        email: userEmail
+                    },
+                    notes: {
+                        type: 'micro-saas',
+                        total: selectedTotal,
+                        upfront: selectedUpfront
+                    },
+                    theme: {
+                        color: '#0A0A0A'
+                    },
+                    handler: async function (response) {
+                        const verifyResponse = await fetch(`${API_BASE}/api/verify-payment`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature
+                            })
+                        });
+
+                        let verifyData;
+                        try {
+                            verifyData = await verifyResponse.json();
+                        } catch (e) {
+                            showAlert('Verification server response invalid.', 'error');
+                            return;
+                        }
+
+                        if (verifyData.success) {
+                            showSuccess(userName, userEmail, selectedTotal, selectedUpfront, response.razorpay_payment_id);
+                        } else {
+                            showAlert('Payment verification failed. Please contact support.', 'error');
+                            payButton.disabled = false;
+                            payButtonText.textContent = 'Pay with Razorpay';
+                        }
+                    },
+                    modal: {
+                        ondismiss: function() {
+                            payButton.disabled = false;
+                            payButtonText.textContent = 'Pay with Razorpay';
+                        }
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (response) {
+                    showAlert(`Payment failed: ${response.error.description}`, 'error');
+                    payButton.disabled = false;
+                    payButtonText.textContent = 'Pay with Razorpay';
+                });
+                rzp.open();
+
+            } catch (error) {
+                showAlert(error.message || 'Something went wrong. Please try again.', 'error');
+                payButton.disabled = false;
+                payButtonText.textContent = 'Pay with Razorpay';
+            }
+        });
+
+        function showSuccess(name, email, total, upfront, paymentId) {
+            document.getElementById('paymentContainer').classList.add('hidden');
+            document.getElementById('successContainer').classList.remove('hidden');
+            
+            document.getElementById('successDetails').innerHTML = `
+                <div class="row">
+                    <span class="key">Name</span>
+                    <span class="value">${name}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Email</span>
+                    <span class="value">${email}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Total Project</span>
+                    <span class="value">$${total.toLocaleString()}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Amount Paid</span>
+                    <span class="value">$${upfront.toLocaleString()}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Payment ID</span>
+                    <span class="value" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">${paymentId}</span>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>

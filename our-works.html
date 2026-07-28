@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Works — Khawain.</title>
+    <meta name="description"
+        content="Explore our portfolio of websites, mobile apps, and landing pages — built with precision and purpose by Khawain." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,500&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ============================================================
+           DESIGN TOKENS (matching landing page exactly)
+           ============================================================ */
+        :root {
+            --cream: #F4EFE3;
+            --cream-2: #EDE6D4;
+            --ink: #0A0A0A;
+            --ink-2: #1A1A1A;
+            --grey: #6B6B6B;
+            --grey-light: #9A9A9A;
+            --grey-faint: #B8B3A7;
+            --accent-orange: #FF4D00;
+            --line: rgba(10, 10, 10, 0.10);
+            --line-2: rgba(10, 10, 10, 0.18);
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-bg-strong: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.85);
+            --glass-shadow: 0 8px 30px rgba(40, 30, 10, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --r-sm: 10px;
+            --r-md: 16px;
+            --r-lg: 22px;
+            --r-xl: 32px;
+            --r-2xl: 44px;
+            --maxw: 1440px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        body {
+            background:
+                radial-gradient(1100px 700px at 8% -5%, rgba(255, 245, 210, 0.7) 0%, transparent 55%),
+                radial-gradient(900px 600px at 100% 10%, rgba(220, 230, 255, 0.45) 0%, transparent 55%),
+                radial-gradient(800px 600px at 50% 100%, rgba(255, 225, 180, 0.35) 0%, transparent 60%),
+                var(--cream);
+            min-height: 100vh;
+            line-height: 1.5;
+            padding-top: 75px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .page {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 22px;
+        }
+
+        @media(min-width:768px) {
+            .page {
+                padding: 30px 38px;
+            }
+        }
+
+        @media(min-width:1200px) {
+            .page {
+                padding: 34px 48px;
+            }
+        }
+
+        /* ============================================================
+           HEADER / NAV — exact match to index.html
+           ============================================================ */
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 12px 6px 20px;
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(244, 239, 227, 0.75);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(10, 10, 10, 0.08);
+            border-radius: 999px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            width: calc(100% - 40px);
+            max-width: var(--maxw);
+        }
+
+        .brand-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+        }
+
+        .brand-name .dot {
+            color: var(--accent-orange);
+        }
+
+        .header-nav-center {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 4px;
+            border-radius: 999px;
+            border: 1px solid rgba(10, 10, 10, 0.06);
+        }
+
+        @media(max-width: 767px) {
+            .header-nav-center {
+                display: none;
+            }
+        }
+
+        .nav-item {
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ink);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(10, 10, 10, 0.1);
+        }
+
+        .btn-book-call {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: var(--accent-orange);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-book-call:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(255, 77, 0, 0.35);
+        }
+
+        /* ============================================================
+           HERO SECTION — typography matching landing page
+           ============================================================ */
+        .works-hero {
+            padding: 48px 0 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 32px;
+        }
+
+        @media(max-width: 900px) {
+            .works-hero {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 28px;
+            }
+        }
+
+        .works-hero-left {
+            max-width: 680px;
+        }
+
+        /* Eyebrow — exactly like // faq etc. in landing page */
+        .works-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--grey);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* Title using Fraunces serif — exactly like section-title in landing page */
+        .works-hero-title {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: clamp(34px, 4.5vw, 56px);
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 14px;
+        }
+
+        .works-hero-title .ital {
+            font-style: italic;
+            color: var(--grey);
+        }
+
+        /* Subtitle — matches landing page sub paragraphs */
+        .works-hero-sub {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--grey);
+            max-width: 520px;
+        }
+
+        /* ============================================================
+           FILTER TAGS — transparent bg, bordered, NO dot on active
+           ============================================================ */
+        .works-filter-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        @media(max-width: 900px) {
+            .works-filter-wrap {
+                justify-content: flex-start;
+            }
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--ink);
+            font-size: 14px;
+            font-weight: 500;
+            border: 1.5px solid rgba(10, 10, 10, 0.2);
+            transition: all 0.22s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--ink);
+            background: rgba(10, 10, 10, 0.05);
+        }
+
+        .filter-btn.active {
+            background: var(--ink);
+            color: #fff;
+            border-color: var(--ink);
+        }
+
+        /* Divider */
+        .hero-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--line-2);
+            margin: 28px 0 52px;
+        }
+
+        /* ============================================================
+           SHOWCASE ROW LAYOUT
+           [70% desktop | 20% mobile] alternating per row
+           ============================================================ */
+        .showcase-section {
+            margin-bottom: 40px;
+        }
+
+        /* Each row is a flex container: desktop+mobile pair */
+        .showcase-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: stretch;
+        }
+
+        /* Desktop iframe container — 70% wide */
+        .frame-desktop {
+            flex: 7;
+            min-width: 0;
+        }
+
+        /* Mobile iframe container — 20% wide + center aligned */
+        .frame-mobile {
+            flex: 2;
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ============================================================
+           IFRAME CARD — clean, minimal (no mac bar)
+           matches landing page project-card style
+           ============================================================ */
+        .iframe-card {
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #FFFFFF;
+        }
+
+        .iframe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.13);
+        }
+
+        /* Desktop card: landscape ratio, like case studies */
+        .frame-desktop .iframe-card {
+            width: 100%;
+            height: 442px;
+        }
+
+        /* Mobile card: portrait ratio */
+        .frame-mobile .iframe-card {
+            width: 100%;
+            height: 442px;
+            border-radius: var(--r-lg);
+        }
+
+        /* Static cover shown by default, iframe on hover */
+        .iframe-cover {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center top;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            z-index: 2;
+            transition: opacity 0.35s ease;
+        }
+
+        .iframe-card:hover .iframe-cover {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cover-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.1) 55%, transparent 100%);
+        }
+
+        .cover-info {
+            position: relative;
+            z-index: 3;
+        }
+
+        .cover-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .cover-title {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .frame-mobile .cover-title {
+            font-size: 15px;
+        }
+
+        .cover-sub {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
+        }
+
+        .frame-mobile .cover-sub {
+            display: none;
+        }
+
+        /* Hover hint badge */
+        .hover-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 4;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 999px;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .iframe-card:hover .hover-badge {
+            opacity: 0;
+        }
+
+        .hover-badge-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #fff;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Iframe element inside card */
+        .live-iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .iframe-card:hover .live-iframe {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Visit link that appears on hover */
+        .visit-link {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            z-index: 5;
+            background: var(--ink);
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .iframe-card:hover .visit-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .visit-link:hover {
+            background: var(--accent-orange);
+        }
+
+        /* Card info below iframe (matching project-info from landing page) */
+        .card-info {
+            margin-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 0 4px;
+        }
+
+        .card-name {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .frame-mobile .card-name {
+            font-size: 14px;
+        }
+
+        .card-tag {
+            font-size: 12px;
+            color: var(--grey);
+            margin-top: 4px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .card-year {
+            font-size: 13px;
+            color: var(--grey);
+        }
+
+        /* ============================================================
+           SHOW MORE BUTTON
+           ============================================================ */
+        .show-more-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0 80px;
+        }
+
+        .btn-show-more {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 38px;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            border: 1.5px solid var(--ink);
+            transition: all 0.22s ease;
+        }
+
+        .btn-show-more:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .btn-show-more svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
+            transition: transform 0.22s ease;
+        }
+
+        .btn-show-more:hover svg {
+            transform: translateY(3px);
+        }
+
+        .counter-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--grey);
+        }
+
+        /* ============================================================
+           FOOTER CARD — matches orange landing page footer exactly
+           ============================================================ */
+        .footer-card {
+            margin-top: 60px;
+            border-radius: var(--r-2xl);
+            background: var(--accent-orange);
+            color: #fff;
+            padding: 48px 48px 36px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(255, 77, 0, 0.2);
+        }
+
+        @media(max-width: 767px) {
+            .footer-card {
+                padding: 32px 24px 28px;
+            }
+        }
+
+        .footer-top-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            font-size: 14px;
+        }
+
+        @media(max-width: 991px) {
+            .footer-top-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media(max-width: 576px) {
+            .footer-top-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .footer-col-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-copy-tag {
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .btn-footer-getstarted {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: #fff;
+            color: var(--accent-orange);
+            font-weight: 600;
+            font-size: 13.5px;
+            margin-top: 14px;
+            width: fit-content;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-footer-getstarted:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-nav-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-nav-col a {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-nav-col a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-bottom-flex {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-top: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-giant-wordmark {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(64px, 12vw, 150px);
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+            color: #fff;
+            margin: 0;
+            user-select: none;
+        }
+
+        .footer-giant-wordmark .dot {
+            color: #fff;
+        }
+
+        .footer-bottom-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px;
+        }
+
+        @media(max-width: 767px) {
+            .footer-bottom-right {
+                align-items: flex-start;
+                width: 100%;
+            }
+        }
+
+        .footer-hours {
+            text-align: right;
+            color: #fff;
+        }
+
+        @media(max-width: 767px) {
+            .footer-hours {
+                text-align: left;
+            }
+        }
+
+        .footer-hours-label {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .footer-hours-val {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .footer-social-circle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+        }
+
+        .footer-social-circle svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+        }
+
+        /* ============================================================
+           EMPTY STATE
+           ============================================================ */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--grey);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+        }
+
+        /* ============================================================
+           RESPONSIVE: stack layout on mobile
+           ============================================================ */
+        @media(max-width: 768px) {
+            .showcase-row {
+                flex-direction: column;
+            }
+
+            .frame-desktop .iframe-card,
+            .frame-mobile .iframe-card {
+                height: 338px;
+            }
+
+            .frame-mobile {
+                display: none;
+            }
+
+            /* hide mobile frame on small screens for cleanliness */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- ============ HEADER ============ -->
+        <header class="site-header">
+            <a href="index.html">
+                <span class="brand-name">Khawain<span class="dot">.</span></span>
+            </a>
+            <nav class="header-nav-center">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="our-works.html" class="nav-item active">Work</a>
+                <a href="index.html#scrollColorSection" class="nav-item">Service</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </nav>
+            <a href="contact.html" class="btn-book-call">Book a Call</a>
+        </header>
+
+        <!-- ============ HERO ============ -->
+        <section class="works-hero">
+            <div class="works-hero-left">
+                <h1 class="works-hero-title">Featured <span class="ital">Work</span></h1>
+                <p class="works-hero-sub">
+                    Providing top-notch branding, digital experiences, and web development through tailored solutions
+                    that fit your unique needs.
+                </p>
+            </div>
+
+            <div class="works-filter-wrap">
+                <button class="filter-btn active" data-filter="all">All Works</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="web">Web Designs</button>
+                <button class="filter-btn" data-filter="landing">Landing Pages</button>
+            </div>
+        </section>
+
+        <div class="hero-divider"></div>
+
+        <!-- ============ SHOWCASE GRID ============ -->
+        <section class="showcase-section">
+            <div id="showcaseContainer">
+                <!-- Rows rendered by JS -->
+            </div>
+            <div class="show-more-wrap">
+                <button class="btn-show-more" id="btnShowMore">
+                    <span>Show More</span>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div class="counter-text" id="counterText"></div>
+            </div>
+        </section>
+
+        <!-- ============ FOOTER CARD (matching index.html orange footer) ============ -->
+        <footer class="footer-card" id="footer">
+            <div class="footer-top-grid">
+                <div class="footer-col-contact">
+                    <div class="footer-copy-tag">©Khawain. 2026</div>
+                    <div class="footer-contact-info">
+                        <div>+263-443-2420</div>
+                        <div>info@khawain.com</div>
+                        <div>Tebs Street</div>
+                        <div>1007 N. College Ave. Unit</div>
+                        <div>BFort Collins, CO 80524</div>
+                    </div>
+                    <a href="contact.html" class="btn-footer-getstarted">Get Started Today</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About us</a>
+                    <a href="index.html#scrollColorSection">Service</a>
+                    <a href="our-works.html">Works</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="index.html">404</a>
+                    <a href="index.html">Styleguide</a>
+                    <a href="index.html">License</a>
+                    <a href="index.html">Changelog</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="index.html">Privacy policy</a>
+                    <a href="index.html">Terms of service</a>
+                </div>
+            </div>
+            <div class="footer-bottom-flex">
+                <h2 class="footer-giant-wordmark">Khawain<span class="dot">.</span></h2>
+                <div class="footer-bottom-right">
+                    <div class="footer-hours">
+                        <div class="footer-hours-label">Mo—Fr</div>
+                        <div class="footer-hours-val">9am—6pm</div>
+                    </div>
+                    <div class="footer-social-icons">
+                        <a href="https://x.com/khawaimedia" target="_blank" class="footer-social-circle" aria-label="X">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/khawaimedia" target="_blank" class="footer-social-circle"
+                            aria-label="Instagram">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/company/khawaimedia" target="_blank" class="footer-social-circle"
+                            aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        /* =============================================================
+           WORKS DATA — 21 items
+           Replace url with actual client site URLs when ready.
+           bgImg can be a screenshot URL for the cover thumbnail.
+           ============================================================= */
+        const worksData = [
+            {
+                id: 1,
+                title: "Apex Health Companion",
+                category: "mobile",
+                categoryLabel: "Mobile App",
+                tech: "mobile · expo, react native",
+                year: "2025",
+                url: "https://spartanai.framer.website/",
+                bgImg: "https://picsum.photos/seed/apex/900/600",
+                bgColor: "#1A1C29"
+            },
+            {
+                id: 2,
+                title: "Horizon Finance OS",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "web app · react, supabase",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/horizon/900/600",
+                bgColor: "#0F2027"
+            },
+            {
+                id: 3,
+                title: "Nova AI Studio",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                tech: "landing · next.js, vercel",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/nova/900/600",
+                bgColor: "#2B1055"
+            },
+            {
+                id: 4,
+                title: "Veloce Urban Mobility",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "e-commerce · shopify, react",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/veloce/900/600",
+                bgColor: "#16222A"
+            },
+            {
+                id: 5,
+                title: "Zenith Web3 Wallet",
+                category: "mobile",
+                categoryLabel: "Mobile App",
+                tech: "mobile · react native, web3",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/zenith/900/600",
+                bgColor: "#1A1A1A"
+            },
+            {
+                id: 6,
+                title: "Lumina Workflow Automation",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                tech: "landing · astro, cloudflare",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/lumina/900/600",
+                bgColor: "#141E30"
+            },
+            {
+                id: 7,
+                title: "Architecto Spatial Design",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "web · three.js, gsap",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/architecto/900/600",
+                bgColor: "#232526"
+            },
+            {
+                id: 8,
+                title: "Starlight Lossless Audio",
+                category: "mobile",
+                categoryLabel: "Mobile App",
+                tech: "mobile · expo, audio api",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/starlight/900/600",
+                bgColor: "#1F1C2C"
+            },
+            {
+                id: 9,
+                title: "Orbital Global Payments",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                tech: "landing · next.js, stripe",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/orbital/900/600",
+                bgColor: "#0D0E15"
+            },
+            {
+                id: 10,
+                title: "Flowspace Collaborative Docs",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "web app · next, yjs",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/flowspace/900/600",
+                bgColor: "#1E2A3A"
+            },
+            {
+                id: 11,
+                title: "Hyperion Cloud Monitor",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "dashboard · react, grafana",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/hyperion/900/600",
+                bgColor: "#0A1628"
+            },
+            {
+                id: 12,
+                title: "Vibe Creator Network",
+                category: "mobile",
+                categoryLabel: "Mobile App",
+                tech: "mobile · expo, ffmpeg",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/vibe/900/600",
+                bgColor: "#2C0E37"
+            },
+            {
+                id: 13,
+                title: "Aura Botanical Cosmetics",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                tech: "landing · astro, shopify",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/aura/900/600",
+                bgColor: "#1A3030"
+            },
+            {
+                id: 14,
+                title: "Echo Audiophile Gear",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "e-commerce · next, shopify",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/echo/900/600",
+                bgColor: "#111111"
+            },
+            {
+                id: 15,
+                title: "Pulse Freight Logistics",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "web app · react, mapbox",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/pulse/900/600",
+                bgColor: "#0B1520"
+            },
+            {
+                id: 16,
+                title: "Cortex Knowledge Vault",
+                category: "mobile",
+                categoryLabel: "Mobile App",
+                tech: "mobile · expo, sqlite",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/cortex/900/600",
+                bgColor: "#181818"
+            },
+            {
+                id: 17,
+                title: "Prism Spatial Hardware",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                tech: "landing · three.js, webgl",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/prism/900/600",
+                bgColor: "#1A0040"
+            },
+            {
+                id: 18,
+                title: "Solaria Green Energy",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                tech: "landing · astro, animations",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/solaria/900/600",
+                bgColor: "#0A2010"
+            },
+            {
+                id: 19,
+                title: "Velocity Pipeline CRM",
+                category: "web",
+                categoryLabel: "Web Design",
+                tech: "web app · react, firebase",
+                year: "2024",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/velocity/900/600",
+                bgColor: "#101A10"
+            },
+            {
+                id: 20,
+                title: "Kinetix Fitness Band",
+                category: "mobile",
+                categoryLabel: "Mobile App",
+                tech: "mobile · expo, ble api",
+                year: "2025",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/kinetix/900/600",
+                bgColor: "#000428"
+            },
+            {
+                id: 21,
+                title: "Khawain Agency Studio",
+                category: "landing",
+                categoryLabel: "Landing Page",
+                tech: "landing · html, css, js",
+                year: "2026",
+                url: "https://example.com",
+                bgImg: "https://picsum.photos/seed/khawain/900/600",
+                bgColor: "#1A1A1A"
+            }
+        ];
+
+        /* State */
+        let currentFilter = "all";
+        let visibleCount = 4; // Number of PAIRS (rows) to show; each pair = 1 row with desktop+mobile
+
+        const container = document.getElementById("showcaseContainer");
+        const btnShowMore = document.getElementById("btnShowMore");
+        const counterText = document.getElementById("counterText");
+        const filterBtns = document.querySelectorAll(".filter-btn");
+
+        function getFiltered() {
+            if (currentFilter === "all") return worksData;
+            return worksData.filter(w => w.category === currentFilter);
+        }
+
+        /* Build one card (desktop or mobile variant) */
+        function buildCard(item, isMobile) {
+            const sizeClass = isMobile ? "frame-mobile" : "frame-desktop";
+            return `
+                <div class="${sizeClass}">
+                    <div class="iframe-card" data-id="${item.id}" data-url="${item.url}">
+                        <!-- Static cover -->
+                        <div class="iframe-cover" style="background-color:${item.bgColor}; background-image:url('${item.bgImg}')">
+                            <div class="cover-gradient"></div>
+                            <div class="cover-info">
+                                <div class="cover-tag">${item.categoryLabel}</div>
+                                ${!isMobile ? `<div class="cover-title">${item.title}</div>` : ""}
+                                ${!isMobile ? `<div class="cover-sub">${item.tech}</div>` : ""}
+                            </div>
+                        </div>
+                        <!-- Hover hint -->
+                        <div class="hover-badge">
+                            <span class="hover-badge-dot"></span>
+                            Hover to Preview
+                        </div>
+                        <!-- Live iframe (inserted on hover) -->
+                        <div class="live-iframe" id="iframe-slot-${item.id}-${isMobile ? 'm' : 'd'}"></div>
+                        <!-- Visit link (desktop only) -->
+                        ${!isMobile ? `<a href="${item.url}" target="_blank" class="visit-link">Open site ↗</a>` : ""}
+                    </div>
+                    <!-- Card info below frame (desktop only) -->
+                    ${!isMobile ? `
+                    <div class="card-info">
+                        <div>
+                            <div class="card-name">${item.title}</div>
+                            <div class="card-tag">${item.tech}</div>
+                        </div>
+                        <div class="card-year">${item.year}</div>
+                    </div>` : ""}
+                </div>
+            `;
+        }
+
+        /* Build alternating rows:
+           even index row  → [desktop 70%] [mobile 20%]
+           odd  index row  → [mobile 20%] [desktop 70%]
+           But we treat each item as its own row (one item = one row with desktop+mobile pair).
+        */
+        function buildRow(item, rowIndex) {
+            const isReversed = rowIndex % 2 !== 0; // alternate per row
+            const desktopHTML = buildCard(item, false);
+            const mobileHTML = buildCard(item, true);
+            const rowContent = isReversed
+                ? `${mobileHTML}${desktopHTML}`
+                : `${desktopHTML}${mobileHTML}`;
+            return `<div class="showcase-row">${rowContent}</div>`;
+        }
+
+        function renderShowcase() {
+            const filtered = getFiltered();
+            const toShow = filtered.slice(0, visibleCount);
+
+            if (toShow.length === 0) {
+                container.innerHTML = `<div class="empty-state">No projects in this category yet.</div>`;
+                btnShowMore.style.display = "none";
+                counterText.textContent = "";
+                return;
+            }
+
+            container.innerHTML = toShow.map((item, i) => buildRow(item, i)).join("");
+
+            // Attach hover listeners for iframe dynamic loading
+            attachIframeHoverListeners();
+
+            // Counter and button
+            counterText.textContent = `Showing ${toShow.length} of ${filtered.length} works`;
+            btnShowMore.style.display = visibleCount >= filtered.length ? "none" : "inline-flex";
+        }
+
+        /* Lazy-load iframes: create <iframe> element only on mouseenter, keep it alive */
+        function attachIframeHoverListeners() {
+            document.querySelectorAll(".iframe-card").forEach(card => {
+                const id = card.getAttribute("data-id");
+                const url = card.getAttribute("data-url");
+
+                card.addEventListener("mouseenter", () => {
+                    // Desktop slot
+                    const dSlot = document.getElementById(`iframe-slot-${id}-d`);
+                    if (dSlot && !dSlot.querySelector("iframe")) {
+                        const iframe = document.createElement("iframe");
+                        iframe.src = url;
+                        iframe.title = "Live Preview";
+                        iframe.style.cssText = "width:100%;height:100%;border:none;display:block;";
+                        dSlot.appendChild(iframe);
+                    }
+                    // Mobile slot — scaled to simulate mobile viewport
+                    const mSlot = document.getElementById(`iframe-slot-${id}-m`);
+                    if (mSlot && !mSlot.querySelector("iframe")) {
+                        const iframe = document.createElement("iframe");
+                        iframe.src = url;
+                        iframe.title = "Mobile Preview";
+                        iframe.style.cssText = "width:375px;height:100%;border:none;display:block;transform:scale(0.55);transform-origin:top left;";
+                        mSlot.appendChild(iframe);
+                    }
+                });
+            });
+        }
+
+        /* Filter button handlers */
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.getAttribute("data-filter");
+                visibleCount = 4;
+                renderShowcase();
+            });
+        });
+
+        /* Show More */
+        btnShowMore.addEventListener("click", () => {
+            visibleCount += 4;
+            renderShowcase();
+        });
+
+        /* Initial render */
+        renderShowcase();
+    </script>
+</body>
+
+</html>

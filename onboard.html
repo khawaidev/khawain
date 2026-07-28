@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onboarding — Khawain.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        :root {
+            --cream: #F4EFE3;
+            --cream-2: #EDE6D4;
+            --cream-3: #E7DFC9;
+            --ink: #0A0A0A;
+            --ink-2: #1A1A1A;
+            --grey: #6B6B6B;
+            --grey-light: #9A9A9A;
+            --grey-faint: #B8B3A7;
+            --lime: #B6FF3C;
+            --accent-orange: #FF4D00;
+            --line: rgba(10, 10, 10, 0.10);
+            --line-2: rgba(10, 10, 10, 0.18);
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-bg-strong: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.85);
+            --glass-shadow: 0 8px 30px rgba(40, 30, 10, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --glass-shadow-lg: 0 20px 60px rgba(40, 30, 10, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --r-sm: 10px;
+            --r-md: 16px;
+            --r-lg: 22px;
+            --r-xl: 32px;
+            --r-2xl: 44px;
+            --maxw: 1440px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html, body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+
+        body {
+            background:
+                radial-gradient(1100px 700px at 8% -5%, rgba(255, 245, 210, 0.7) 0%, transparent 55%),
+                radial-gradient(900px 600px at 100% 10%, rgba(220, 230, 255, 0.45) 0%, transparent 55%),
+                radial-gradient(800px 600px at 50% 100%, rgba(255, 225, 180, 0.35) 0%, transparent 60%),
+                var(--cream);
+            min-height: 100vh;
+            line-height: 1.5;
+            padding-top: 75px
+        }
+
+        a { color: inherit; text-decoration: none }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit }
+        img { display: block; max-width: 100% }
+
+        .page {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 22px
+        }
+
+        @media(min-width:768px) {
+            .page { padding: 30px 38px }
+        }
+
+        @media(min-width:1200px) {
+            .page { padding: 34px 48px }
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 12px 6px 20px;
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(244, 239, 227, 0.75);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(10, 10, 10, 0.08);
+            border-radius: 999px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            width: calc(100% - 40px);
+            max-width: var(--maxw);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .brand-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+        }
+
+        .brand-name .dot {
+            color: var(--accent-orange);
+        }
+
+        .header-nav-center {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 4px;
+            border-radius: 999px;
+            border: 1px solid rgba(10, 10, 10, 0.06);
+        }
+
+        @media(max-width: 767px) {
+            .header-nav-center { display: none; }
+        }
+
+        .nav-item {
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ink);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(10, 10, 10, 0.1);
+        }
+
+        .btn-book-call {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: var(--accent-orange);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-book-call:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(255, 77, 0, 0.35);
+        }
+
+        /* ONBOARDING LAYOUT */
+        .onboard-section {
+            padding: 30px 0 80px;
+        }
+
+        .onboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: stretch;
+        }
+
+        @media(max-width: 991px) {
+            .onboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* LEFT PANEL — Plan Details */
+        .plan-panel {
+            background: var(--accent-orange);
+            color: #fff;
+            border-radius: var(--r-xl);
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 16px 40px rgba(255, 77, 0, 0.18);
+            min-height: 520px;
+        }
+
+        .plan-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 6px;
+        }
+
+        .plan-name {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: clamp(28px, 3vw, 36px);
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            line-height: 1.15;
+        }
+
+        .plan-details {
+            flex: 1;
+        }
+
+        .plan-detail-section {
+            margin-bottom: 24px;
+        }
+
+        .plan-detail-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.7;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 8px;
+        }
+
+        .plan-detail-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .plan-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .plan-detail-item::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            flex-shrink: 0;
+        }
+
+        .pricing-summary {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 6px 0;
+        }
+
+        .pricing-row.total {
+            padding-top: 12px;
+            margin-top: 6px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .pricing-value {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .pricing-value.total {
+            font-size: 28px;
+        }
+
+        .pricing-note {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 8px;
+        }
+
+        /* RIGHT PANEL — Form */
+        .form-panel {
+            border-radius: var(--r-xl);
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow-lg);
+            padding: 36px;
+        }
+
+        .form-panel-title {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+
+        .form-panel-sub {
+            font-size: 14px;
+            color: var(--grey);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .form-label .optional {
+            color: var(--grey-light);
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--r-md);
+            background: #fff;
+            border: 1px solid var(--line-2);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--ink);
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--ink);
+            box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.08);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-proceed {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            transition: transform .2s ease, box-shadow .2s ease;
+            margin-top: 8px;
+        }
+
+        .btn-proceed:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-proceed:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-proceed svg {
+            width: 18px;
+            height: 18px;
+            transition: transform .2s ease;
+        }
+
+        .btn-proceed:hover svg {
+            transform: translateX(3px);
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--grey-light);
+        }
+
+        .security-note svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .alert {
+            padding: 16px 20px;
+            border-radius: var(--r-md);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: rgba(182, 255, 60, 0.15);
+            border: 1px solid rgba(182, 255, 60, 0.4);
+            color: var(--ink);
+        }
+
+        .alert-error {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            color: #c00;
+        }
+
+        .alert-info {
+            background: rgba(100, 150, 255, 0.1);
+            border: 1px solid rgba(100, 150, 255, 0.3);
+            color: var(--ink);
+        }
+
+        .hidden { display: none !important; }
+
+        /* SUCCESS STATE */
+        .success-container {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--lime), #8fd14f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--ink);
+        }
+
+        .success-title {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .success-message {
+            font-size: 16px;
+            color: var(--grey);
+            max-width: 400px;
+            margin: 0 auto 32px;
+        }
+
+        .success-details {
+            padding: 20px;
+            border-radius: var(--r-md);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: inline-block;
+            text-align: left;
+        }
+
+        .success-details .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .success-details .row:last-child {
+            border-bottom: none;
+        }
+
+        .success-details .key {
+            font-size: 13px;
+            color: var(--grey);
+        }
+
+        .success-details .value {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* FOOTER */
+        .footer-card {
+            margin-top: 60px;
+            border-radius: var(--r-2xl);
+            background: var(--accent-orange);
+            color: #fff;
+            padding: 48px 48px 36px;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 20px 60px rgba(255, 77, 0, 0.2);
+        }
+
+        .footer-top-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            font-size: 14px;
+        }
+
+        @media(max-width: 991px) {
+            .footer-top-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+        }
+        @media(max-width: 576px) {
+            .footer-top-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        .footer-col-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-copy-tag {
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .btn-footer-getstarted {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: #fff;
+            color: var(--accent-orange);
+            font-weight: 600;
+            font-size: 13.5px;
+            margin-top: 14px;
+            width: fit-content;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-footer-getstarted:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer-nav-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-nav-col a {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-nav-col a:hover { opacity: 0.75; }
+
+        .footer-bottom-flex {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-top: 30px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-giant-wordmark {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(64px, 12vw, 150px);
+            line-height: 0.85;
+            letter-spacing: -0.05em;
+            color: #fff;
+            margin: 0;
+            user-select: none;
+        }
+
+        .footer-giant-wordmark .dot { color: #fff; }
+
+        .footer-bottom-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px;
+        }
+
+        @media(max-width: 767px) {
+            .footer-bottom-right { align-items: flex-start; width: 100%; }
+        }
+
+        .footer-hours { text-align: right; color: #fff; }
+        @media(max-width: 767px) { .footer-hours { text-align: left; } }
+
+        .footer-hours-label {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .footer-hours-val {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .footer-social-circle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+        }
+
+        .footer-social-circle svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <header class="site-header">
+            <a href="index.html" class="brand">
+                <span class="brand-name">Khawain<span class="dot">.</span></span>
+            </a>
+            <nav class="header-nav-center">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="index.html#showcase" class="nav-item">Work</a>
+                <a href="index.html#scrollColorSection" class="nav-item">Service</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </nav>
+            <a href="contact.html" class="btn-book-call">Book a Call</a>
+        </header>
+
+        <!-- ONBOARDING CONTENT -->
+        <div id="mainContent">
+            <div class="onboard-section">
+                <div class="onboard-grid">
+                    <!-- LEFT PANEL — Plan Details -->
+                    <div class="plan-panel" id="planPanel">
+                        <div>
+                            <div class="plan-eyebrow" id="planEyebrow">// website design</div>
+                            <div class="plan-name" id="planName">Studio Sites</div>
+
+                            <div class="plan-details">
+                                <div class="plan-detail-section">
+                                    <div class="plan-detail-label">What you'll get</div>
+                                    <div class="plan-detail-items" id="planFeatures">
+                                        <div class="plan-detail-item">Landing pages & marketing sites</div>
+                                        <div class="plan-detail-item">Figma design + Webflow / Framer build</div>
+                                        <div class="plan-detail-item">Responsive + CMS setup</div>
+                                        <div class="plan-detail-item">2 rounds of revisions</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-summary">
+                            <div class="pricing-row">
+                                <span class="pricing-label">Total project</span>
+                                <span class="pricing-value" id="totalAmount">$499</span>
+                            </div>
+                            <div class="pricing-row total">
+                                <span class="pricing-label">Upfront (50%)</span>
+                                <span class="pricing-value total" id="upfrontAmount">$249.50</span>
+                            </div>
+                            <div class="pricing-note">50% due now, 50% on delivery. Pay securely with Razorpay.</div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT PANEL — Form -->
+                    <div class="form-panel" id="formPanel">
+                        <h2 class="form-panel-title">Start your project</h2>
+                        <p class="form-panel-sub">We'll get back to you within 24 hours after payment.</p>
+
+                        <div id="alertBox" class="hidden"></div>
+
+                        <form id="onboardForm">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-input" id="userName" placeholder="Enter your full name" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" id="userEmail" placeholder="Enter your email address" required />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">WhatsApp / Phone <span class="optional">(optional)</span></label>
+                                <input type="tel" class="form-input" id="userPhone" placeholder="+1 234 567 8900" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Company</label>
+                                <input type="text" class="form-input" id="companyName" placeholder="Your company name" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Anything you'd like to share</label>
+                                <textarea class="form-textarea" id="projectMessage" placeholder="Tell us about your project, goals, timeline, or any specific requirements…"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-proceed" id="payButton">
+                                <span id="payButtonText">Proceed to Payment</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <div class="security-note">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                            Secured by Razorpay · 256-bit encryption · 50% now, 50% on delivery
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUCCESS STATE (hidden) -->
+            <div class="onboard-section hidden" id="successContainer">
+                <div class="onboard-grid" style="grid-template-columns:1fr;">
+                    <div class="form-panel" style="max-width:600px;margin:0 auto;">
+                        <div class="success-container">
+                            <div class="success-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </div>
+                            <h2 class="success-title">Payment Successful!</h2>
+                            <p class="success-message">Thank you for your payment. We'll review your information and be in touch within 24 hours to start your project.</p>
+                            <div class="success-details" id="successDetails"></div>
+                            <a href="index.html" class="btn-proceed" style="margin-top: 32px; display: inline-flex; text-decoration:none; max-width:300px;">
+                                Return to Home
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer-card">
+            <div class="footer-top-grid">
+                <div class="footer-col-contact">
+                    <div class="footer-copy-tag">©Khawain. 2026</div>
+                    <div class="footer-contact-info">
+                        <div>+263-443-2420</div>
+                        <div>info@khawain.com</div>
+                        <div>Tebs Street</div>
+                        <div>1007 N. College Ave. Unit</div>
+                        <div>BFort Collins, CO 80524</div>
+                    </div>
+                    <a href="contact.html" class="btn-footer-getstarted">Get Started Today</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About us</a>
+                    <a href="index.html#scrollColorSection">Service</a>
+                    <a href="index.html#showcase">Works</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="index.html">404</a>
+                    <a href="index.html">Styleguide</a>
+                    <a href="index.html">License</a>
+                    <a href="index.html">Changelog</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="index.html">Privacy policy</a>
+                    <a href="index.html">Terms of service</a>
+                </div>
+            </div>
+            <div class="footer-bottom-flex">
+                <h1 class="footer-giant-wordmark">Khawain<span class="dot">.</span></h1>
+                <div class="footer-bottom-right">
+                    <div class="footer-hours">
+                        <div class="footer-hours-label">Mo—Fr</div>
+                        <div class="footer-hours-val">9am—6pm</div>
+                    </div>
+                    <div class="footer-social-icons">
+                        <a href="https://x.com/khawaimedia" target="_blank" class="footer-social-circle" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="https://instagram.com/khawaimedia" target="_blank" class="footer-social-circle" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                        <a href="https://linkedin.com/company/khawaimedia" target="_blank" class="footer-social-circle" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ─── Config ──────────────────────────────────────────
+        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID'; // Replace with actual key
+
+        // ─── Plan data ──────────────────────────────────────
+        const PLANS = {
+            studio: {
+                name: 'Studio Sites',
+                eyebrow: '// website design',
+                total: 499,
+                upfrontRate: 0.5,
+                features: [
+                    'Landing pages & marketing sites',
+                    'Figma design + Webflow / Framer build',
+                    'Responsive + CMS setup',
+                    '2 rounds of revisions'
+                ],
+                apiType: 'landing'
+            },
+            engineering: {
+                name: 'Product Engineering',
+                eyebrow: '// full-stack micro saas / apps',
+                total: 2499,
+                upfrontRate: 0.5,
+                features: [
+                    'Web apps, mobile apps, SaaS MVPs',
+                    'Next.js / React / Expo + Supabase',
+                    'Auth, payments, dashboards',
+                    'Deployment + handoff docs'
+                ],
+                apiType: 'saas'
+            }
+        };
+
+        // ─── DOM refs ──────────────────────────────────────
+        const planName = document.getElementById('planName');
+        const planEyebrow = document.getElementById('planEyebrow');
+        const planFeatures = document.getElementById('planFeatures');
+        const totalAmount = document.getElementById('totalAmount');
+        const upfrontAmount = document.getElementById('upfrontAmount');
+        const onboardForm = document.getElementById('onboardForm');
+        const payButton = document.getElementById('payButton');
+        const payButtonText = document.getElementById('payButtonText');
+        const alertBox = document.getElementById('alertBox');
+        const mainContent = document.getElementById('mainContent');
+        const successContainer = document.getElementById('successContainer');
+        const successDetails = document.getElementById('successDetails');
+
+        let currentPlan = null;
+        let currentTotal = 0;
+        let currentUpfront = 0;
+
+        // ─── Helpers ───────────────────────────────────────
+        function showAlert(message, type) {
+            alertBox.className = `alert alert-${type}`;
+            alertBox.textContent = message;
+            alertBox.classList.remove('hidden');
+        }
+
+        function hideAlert() {
+            alertBox.classList.add('hidden');
+        }
+
+        function formatCurrency(n) {
+            return n % 1 === 0 ? '$' + n.toLocaleString() : '$' + n.toFixed(2);
+        }
+
+        // ─── Load plan from URL ────────────────────────────
+        function loadPlan() {
+            const params = new URLSearchParams(window.location.search);
+            const planKey = params.get('plan') || 'studio';
+            const plan = PLANS[planKey];
+
+            if (!plan) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            currentPlan = planKey;
+            currentTotal = plan.total;
+            currentUpfront = Math.round(plan.total * plan.upfrontRate * 100) / 100;
+
+            planName.textContent = plan.name;
+            planEyebrow.textContent = plan.eyebrow;
+            totalAmount.textContent = formatCurrency(plan.total);
+            upfrontAmount.textContent = formatCurrency(currentUpfront);
+
+            planFeatures.innerHTML = plan.features.map(f =>
+                `<div class="plan-detail-item">${f}</div>`
+            ).join('');
+        }
+
+        loadPlan();
+
+        // ─── Form submit → Razorpay ────────────────────────
+        onboardForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert();
+
+            const userName = document.getElementById('userName').value.trim();
+            const userEmail = document.getElementById('userEmail').value.trim();
+            const userPhone = document.getElementById('userPhone').value.trim();
+            const companyName = document.getElementById('companyName').value.trim();
+            const projectMessage = document.getElementById('projectMessage').value.trim();
+
+            if (!userName || !userEmail) {
+                showAlert('Please enter your name and email.', 'error');
+                return;
+            }
+
+            if (!currentUpfront || currentUpfront < 1) {
+                showAlert('Invalid plan amount. Please go back and try again.', 'error');
+                return;
+            }
+
+            payButton.disabled = true;
+            payButtonText.textContent = 'Creating order...';
+
+            const API_BASE = window.location.port === '3001' ? '' : 'http://localhost:3001';
+            const plan = PLANS[currentPlan];
+            const endpoint = plan.apiType === 'landing' ? `${API_BASE}/api/create-landing-order` : `${API_BASE}/api/create-saas-order`;
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: currentUpfront,
+                        userName,
+                        userEmail,
+                        projectDescription: `Company: ${companyName} | Phone: ${userPhone} | Message: ${projectMessage}`
+                    })
+                });
+
+                let data;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    throw new Error(`Invalid server response (${response.status}). Ensure backend is running at http://localhost:3001`);
+                }
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to create order');
+                }
+
+                const options = {
+                    key: RAZORPAY_KEY_ID,
+                    amount: data.amount,
+                    currency: data.currency,
+                    name: 'Khawaimedia',
+                    description: `${plan.name} — 50% Upfront ($${currentUpfront})`,
+                    order_id: data.orderId,
+                    prefill: {
+                        name: userName,
+                        email: userEmail,
+                        contact: userPhone
+                    },
+                    notes: {
+                        plan: currentPlan,
+                        total: currentTotal,
+                        upfront: currentUpfront,
+                        company: companyName,
+                        phone: userPhone,
+                        message: projectMessage
+                    },
+                    theme: {
+                        color: '#0A0A0A'
+                    },
+                    handler: async function (response) {
+                        const verifyResponse = await fetch(`${API_BASE}/api/verify-payment`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                razorpay_order_id: response.razorpay_order_id,
+                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_signature: response.razorpay_signature
+                            })
+                        });
+
+                        let verifyData;
+                        try {
+                            verifyData = await verifyResponse.json();
+                        } catch (e) {
+                            showAlert('Verification server response invalid.', 'error');
+                            return;
+                        }
+
+                        if (verifyData.success) {
+                            showSuccess(userName, userEmail, companyName, currentTotal, currentUpfront, response.razorpay_payment_id);
+                        } else {
+                            showAlert('Payment verification failed. Please contact support.', 'error');
+                            payButton.disabled = false;
+                            payButtonText.textContent = 'Proceed to Payment';
+                        }
+                    },
+                    modal: {
+                        ondismiss: function () {
+                            payButton.disabled = false;
+                            payButtonText.textContent = 'Proceed to Payment';
+                        }
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (response) {
+                    showAlert(`Payment failed: ${response.error.description}`, 'error');
+                    payButton.disabled = false;
+                    payButtonText.textContent = 'Proceed to Payment';
+                });
+                rzp.open();
+
+            } catch (error) {
+                showAlert(error.message || 'Something went wrong. Please try again.', 'error');
+                payButton.disabled = false;
+                payButtonText.textContent = 'Proceed to Payment';
+            }
+        });
+
+        function showSuccess(name, email, company, total, upfront, paymentId) {
+            document.getElementById('mainContent').classList.add('hidden');
+            successContainer.classList.remove('hidden');
+
+            successDetails.innerHTML = `
+                <div class="row">
+                    <span class="key">Name</span>
+                    <span class="value">${name}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Email</span>
+                    <span class="value">${email}</span>
+                </div>
+                ${company ? `<div class="row">
+                    <span class="key">Company</span>
+                    <span class="value">${company}</span>
+                </div>` : ''}
+                <div class="row">
+                    <span class="key">Plan</span>
+                    <span class="value">${PLANS[currentPlan].name}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Total Project</span>
+                    <span class="value">${formatCurrency(total)}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Amount Paid</span>
+                    <span class="value">${formatCurrency(upfront)}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Payment ID</span>
+                    <span class="value" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">${paymentId}</span>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>
