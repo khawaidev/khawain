@@ -3,3 +3,7 @@ service_zpcf20o
 Growth
 
 Businesses
+
+command pompt: git add . && git commit -m "Auto update frontend" && git push origin main
+
+powershell: git add . ; git commit -m "Auto update frontend" ; git push origin main
