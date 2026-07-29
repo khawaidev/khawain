@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — Khawain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+        :root { --cream: #F4EFE3; --ink: #0A0A0A; --grey: #6B6B6B; --grey-faint: #B8B3A7; --accent-orange: #FF4D00; --line: rgba(10,10,10,0.10); --glass-bg: rgba(255,255,255,0.55); --glass-border: rgba(255,255,255,0.85); --glass-shadow: 0 8px 30px rgba(40,30,10,0.06), inset 0 1px 0 rgba(255,255,255,0.9); --r-sm: 10px; --r-md: 16px; --r-lg: 22px; --r-xl: 32px; --r-2xl: 44px; --maxw: 1440px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { background: var(--cream); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        body { background: radial-gradient(1100px 700px at 8% -5%, rgba(255,245,210,0.7) 0%, transparent 55%), var(--cream); min-height: 100vh; line-height: 1.5; padding-top: 75px; }
+        a { color: inherit; text-decoration: none; }
+        .page { max-width: var(--maxw); margin: 0 auto; padding: 22px; }
+        @media(min-width:768px) { .page { padding: 30px 38px; } }
+        @media(min-width:1200px) { .page { padding: 34px 48px; } }
+        .site-header { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px 6px 20px; position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 100; background: rgba(244,239,227,0.75); backdrop-filter: blur(25px) saturate(180%); border: 1px solid rgba(10,10,10,0.08); border-radius: 999px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); width: calc(100% - 40px); max-width: var(--maxw); }
+        .brand-name { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; }
+        .brand-name .dot { color: var(--accent-orange); }
+        .header-nav-center { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.4); padding: 4px; border-radius: 999px; border: 1px solid rgba(10,10,10,0.06); }
+        @media(max-width:767px) { .header-nav-center { display: none; } }
+        .nav-item { padding: 8px 18px; border-radius: 999px; font-size: 14px; font-weight: 500; border: 1px solid transparent; transition: all 0.2s ease; }
+        .nav-item:hover, .nav-item.active { background: rgba(255,255,255,0.8); border-color: rgba(10,10,10,0.1); font-weight: 600; }
+        .btn-book-call { display: inline-flex; align-items: center; justify-content: center; padding: 10px 22px; border-radius: 999px; background: var(--accent-orange); color: #fff; font-size: 14px; font-weight: 600; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-book-call:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(255,77,0,0.35); }
+        .page-hero { padding: 50px 8px 40px; text-align: center; }
+        .page-hero h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(40px, 5vw, 68px); letter-spacing: -0.02em; }
+        .page-hero h1 .ital { font-style: italic; color: var(--grey); }
+        .page-hero .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey-faint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
+        .legal-content { max-width: 800px; margin: 0 auto; padding: 20px 8px 60px; }
+        .legal-content h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; margin: 36px 0 16px; letter-spacing: -0.01em; }
+        .legal-content h3 { font-weight: 600; font-size: 18px; margin: 24px 0 12px; }
+        .legal-content p { font-size: 15px; color: var(--grey); line-height: 1.7; margin-bottom: 14px; }
+        .legal-content ul { margin: 10px 0 20px 20px; }
+        .legal-content ul li { font-size: 15px; color: var(--grey); line-height: 1.7; margin-bottom: 6px; }
+        .legal-content .last-updated { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--grey-faint); margin-bottom: 30px; }
+        .legal-card { background: var(--glass-bg); backdrop-filter: blur(14px); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); border-radius: var(--r-md); padding: 32px; }
+        .footer-card { margin-top: 80px; border-radius: var(--r-2xl); background: var(--accent-orange); color: #fff; padding: 48px 48px 36px; overflow: hidden; box-shadow: 0 20px 60px rgba(255,77,0,0.2); }
+        .footer-top-grid { display: grid; grid-template-columns: 1.5fr repeat(4,1fr); gap: 30px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.25); font-size: 14px; }
+        @media(max-width:991px) { .footer-top-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+        @media(max-width:576px) { .footer-top-grid { grid-template-columns: 1fr; gap: 24px; } }
+        .footer-col-contact { display: flex; flex-direction: column; gap: 12px; }
+        .footer-copy-tag { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+        .footer-contact-info { display: flex; flex-direction: column; gap: 4px; color: rgba(255,255,255,0.9); font-size: 13.5px; line-height: 1.5; }
+        .footer-contact-info a { color: rgba(255,255,255,0.9); display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
+        .footer-contact-info a:hover { opacity: 0.75; }
+        .footer-contact-info .wa-icon { width: 16px; height: 16px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
+        .footer-contact-info .wa-icon svg { width: 14px; height: 14px; fill: #fff; }
+        .btn-footer-getstarted { display: inline-flex; align-items: center; justify-content: center; padding: 10px 22px; border-radius: 999px; background: #fff; color: var(--accent-orange); font-weight: 600; font-size: 13.5px; margin-top: 14px; width: fit-content; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-footer-getstarted:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .footer-nav-col { display: flex; flex-direction: column; gap: 10px; }
+        .footer-nav-col a { color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 500; transition: opacity 0.2s ease; }
+        .footer-nav-col a:hover { opacity: 0.75; }
+        .footer-bottom-flex { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 30px; gap: 20px; flex-wrap: wrap; }
+        .footer-giant-wordmark { font-family: 'Inter', sans-serif; font-weight: 900; font-size: clamp(64px, 12vw, 150px); line-height: 0.85; letter-spacing: -0.05em; color: #fff; user-select: none; }
+        .footer-giant-wordmark .dot { color: #fff; }
+        .footer-bottom-right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+        @media(max-width:767px) { .footer-bottom-right { align-items: flex-start; width: 100%; } }
+        .footer-hours { text-align: right; color: #fff; }
+        @media(max-width:767px) { .footer-hours { text-align: left; } }
+        .footer-hours-label { font-size: 12px; font-weight: 600; opacity: 0.8; margin-bottom: 2px; }
+        .footer-hours-val { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+        .footer-social-icons { display: flex; gap: 10px; }
+        .footer-social-circle { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; color: #fff; transition: background 0.2s ease, border-color 0.2s ease; }
+        .footer-social-circle:hover { background: rgba(255,255,255,0.2); border-color: #fff; }
+        .footer-social-circle svg { width: 15px; height: 15px; fill: currentColor; }
+        @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <a href="index.html" class="brand"><span class="brand-name">Khawain<span class="dot">.</span></span></a>
+            <nav class="header-nav-center">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="our-works.html" class="nav-item">Work</a>
+                <a href="index.html#scrollColorSection" class="nav-item">Service</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </nav>
+            <a href="contact.html" class="btn-book-call">Book a Call</a>
+        </header>
+
+        <section class="page-hero">
+            <div class="eyebrow">Legal</div>
+            <h1>Privacy <span class="ital">Policy</span></h1>
+        </section>
+
+        <div class="legal-content">
+            <div class="legal-card">
+                <p class="last-updated">Last updated: July 28, 2026</p>
+
+                <h2>1. Introduction</h2>
+                <p>Khawain ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or use our services.</p>
+
+                <h2>2. Information We Collect</h2>
+                <p>We may collect the following types of information:</p>
+                <ul>
+                    <li><strong>Personal Information:</strong> Name, email address, phone number, and company details when you fill out a contact form, book a call, or onboard with us.</li>
+                    <li><strong>Payment Information:</strong> When you purchase services, payment processing is handled securely by Razorpay. We do not store your full payment details.</li>
+                    <li><strong>Usage Data:</strong> We may collect anonymous analytics about how you interact with our website.</li>
+                </ul>
+
+                <h2>3. How We Use Your Information</h2>
+                <p>We use your information to:</p>
+                <ul>
+                    <li>Respond to your inquiries and provide customer support</li>
+                    <li>Deliver the services you've requested</li>
+                    <li>Process payments securely</li>
+                    <li>Improve our website and services</li>
+                    <li>Send occasional updates and marketing communications (with your consent)</li>
+                </ul>
+
+                <h2>4. Data Protection</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+
+                <h2>5. Third-Party Services</h2>
+                <p>We may use third-party services (such as Razorpay for payments and Google Fonts for typography) that have their own privacy policies. We are not responsible for the privacy practices of these third parties.</p>
+
+                <h2>6. Your Rights</h2>
+                <p>You have the right to:</p>
+                <ul>
+                    <li>Access the personal data we hold about you</li>
+                    <li>Request correction or deletion of your data</li>
+                    <li>Withdraw consent for marketing communications</li>
+                    <li>Lodge a complaint with a supervisory authority</li>
+                </ul>
+
+                <h2>7. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:khawain.in@gmail.com" style="color:var(--accent-orange);text-decoration:underline;">khawain.in@gmail.com</a> or via WhatsApp at +91 8119888979.</p>
+            </div>
+        </div>
+
+        <footer class="footer-card">
+            <div class="footer-top-grid">
+                <div class="footer-col-contact">
+                    <div class="footer-copy-tag">©Khawain. 2026</div>
+                    <div class="footer-contact-info">
+                        <a href="https://wa.me/918119888979" target="_blank"><span class="wa-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>+91 8119888979</a>
+                        <a href="mailto:khawain.in@gmail.com">khawain.in@gmail.com</a>
+                        <div>Langol type 3, F 43</div>
+                        <div>Lamphelpat, Manipur</div>
+                    </div>
+                    <a href="contact.html" class="btn-footer-getstarted">Get Started Today</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#scrollColorSection">Service</a>
+                    <a href="our-works.html">Works</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-nav-col">
+                    <a href="404.html">404</a>
+                    
+                    <a href="license.html">License</a>
+                   
+                </div>
+                <div class="footer-nav-col">
+                    <a href="privacy.html">Privacy policy</a>
+                    <a href="terms.html">Terms of service</a>
+                    <a href="cancellation.html">Cancellation & refund</a>
+                    <a href="shipping.html">Shipping policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom-flex">
+                <h1 class="footer-giant-wordmark">Khawain<span class="dot">.</span></h1>
+                <div class="footer-bottom-right">
+                    <div class="footer-hours">
+                        <div class="footer-hours-label">Mo—Fr</div>
+                        <div class="footer-hours-val">9am—6pm</div>
+                    </div>
+                    <div class="footer-social-icons">
+                        <a href="https://x.com/khawaimedia" target="_blank" class="footer-social-circle" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="https://instagram.com/khawaimedia" target="_blank" class="footer-social-circle" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                        <a href="https://linkedin.com/company/khawaimedia" target="_blank" class="footer-social-circle" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

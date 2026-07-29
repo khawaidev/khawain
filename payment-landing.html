@@ -649,7 +649,7 @@
     </div>
 
     <script>
-        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID'; // Replace with actual key
+        let RAZORPAY_KEY_ID = 'rzp_live_TJLfoUzn33tbnd';
 
         let selectedTotal = 0;
         let selectedUpfront = 0;
@@ -763,7 +763,7 @@
                 }
 
                 const options = {
-                    key: RAZORPAY_KEY_ID,
+                    key: data.key || RAZORPAY_KEY_ID,
                     amount: data.amount,
                     currency: data.currency,
                     name: 'khawaimedia',
