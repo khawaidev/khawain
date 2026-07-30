@@ -753,9 +753,14 @@
     </div>
 
     <script>
-        (function() {
-            emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
-        })();
+        // ─── EmailJS Configuration ─────────────────────────
+        const EMAILJS_SERVICE_ID = 'service_zpcf20o';
+        const EMAILJS_TEMPLATE_ID = 'template_contact'; // Replace with your EmailJS Template ID
+        const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';   // Replace with your EmailJS Public Key
+
+        if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+        }
 
         const contactForm = document.getElementById('contactForm');
         const sendButton = document.getElementById('sendButton');
@@ -779,6 +784,8 @@
 
             const userName = document.getElementById('userName').value.trim();
             const userEmail = document.getElementById('userEmail').value.trim();
+            const userPhone = document.getElementById('userPhone').value.trim();
+            const companyName = document.getElementById('companyName').value.trim();
             const message = document.getElementById('message').value.trim();
 
             if (!userName || !userEmail || !message) {
@@ -790,18 +797,27 @@
             sendButtonText.textContent = 'Submitting...';
 
             try {
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                // Initialize EmailJS if public key set inline
+                if (window.emailjs && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+                    emailjs.init(EMAILJS_PUBLIC_KEY);
+                }
+
+                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
                     from_name: userName,
                     from_email: userEmail,
-                    message: message
-                });
+                    reply_to: userEmail,
+                    phone_number: userPhone || 'Not provided',
+                    company_name: companyName || 'Not provided',
+                    message: message,
+                    submission_date: new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })
+                }, EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' ? EMAILJS_PUBLIC_KEY : undefined);
 
                 contactForm.classList.add('hidden');
                 successState.classList.remove('hidden');
 
             } catch (error) {
                 console.error('Email send failed:', error);
-                showAlert('Failed to send message. Please try again.', 'error');
+                showAlert('Failed to send message. Please ensure your EmailJS Public Key & Template ID are configured.', 'error');
                 sendButton.disabled = false;
                 sendButtonText.textContent = 'Submit';
             }
