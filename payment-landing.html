@@ -826,7 +826,9 @@
                 payCurrency = userGeo.currency;
             }
 
-            const API_BASE = window.location.port === '3001' ? '' : 'http://localhost:3001';
+            const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+                ? (window.location.port === '3001' ? '' : 'http://localhost:3001')
+                : 'https://khawain-backend.onrender.com';
 
             try {
                 const response = await fetch(`${API_BASE}/api/create-landing-order`, {
@@ -845,7 +847,7 @@
                 try {
                     data = await response.json();
                 } catch (e) {
-                    throw new Error(`Invalid server response (${response.status}). Ensure backend is running at http://localhost:3001`);
+                    throw new Error(`Invalid server response (${response.status}). Ensure backend is running at ${API_BASE}`);
                 }
 
                 if (!response.ok) {
