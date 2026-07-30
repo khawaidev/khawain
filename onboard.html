@@ -523,6 +523,24 @@
             font-weight: 500;
         }
 
+        .currency-badge {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.82rem;
+            color: var(--grey);
+        }
+
+        .currency-badge strong {
+            color: #fff;
+        }
+
         /* FOOTER */
         .footer-card {
             margin-top: 60px;
@@ -759,6 +777,7 @@
                                 <span class="pricing-value total" id="upfrontAmount">$249.50</span>
                             </div>
                             <div class="pricing-note">50% due now, 50% on delivery. Pay securely with Razorpay.</div>
+                            <div id="currencyBadge" class="currency-badge hidden"></div>
                         </div>
                     </div>
 
@@ -894,7 +913,7 @@
 
     <script>
         // ─── Config ──────────────────────────────────────────
-        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID'; // Replace with actual key
+        const RAZORPAY_KEY_ID = 'rzp_live_TJLfoUzn33tbnd';
 
         // ─── Plan data ──────────────────────────────────────
         const PLANS = {
@@ -1010,7 +1029,84 @@
             ).join('');
         }
 
+        // ─── Geo & Currency Detection ──────────────────────
+        const userGeo = {
+            country: 'US',
+            currency: 'USD',
+            rate: 1,
+            symbol: '$',
+            detected: false
+        };
+
+        const DEFAULT_RATES = { USD: 1, INR: 83.5, EUR: 0.92, GBP: 0.79, CAD: 1.36, AUD: 1.52 };
+        const CURRENCY_SYMBOLS = { USD: '$', INR: '₹', EUR: '€', GBP: '£', CAD: 'CA$', AUD: 'A$' };
+        const COUNTRY_NAMES = { IN: 'India 🇮🇳', GB: 'UK 🇬🇧', US: 'USA 🇺🇸', CA: 'Canada 🇨🇦', AU: 'Australia 🇦🇺', EU: 'Europe 🇪🇺' };
+
+        function updateGeoPricingUI() {
+            const currencyBadge = document.getElementById('currencyBadge');
+            if (!currencyBadge) return;
+
+            if (userGeo.currency !== 'USD' && userGeo.rate) {
+                const convertedUpfront = Math.round(currentUpfront * userGeo.rate);
+                const convertedTotal = Math.round(currentTotal * userGeo.rate);
+                const countryLabel = COUNTRY_NAMES[userGeo.country] || userGeo.country;
+                
+                currencyBadge.innerHTML = `
+                    <span>📍 Detected location: <strong>${countryLabel}</strong></span>
+                    <span>•</span>
+                    <span>Paying <strong>${userGeo.symbol}${convertedUpfront.toLocaleString()} ${userGeo.currency}</strong> (~${formatCurrency(currentUpfront)} USD)</span>
+                `;
+                currencyBadge.classList.remove('hidden');
+
+                if (upfrontAmount) {
+                    upfrontAmount.innerHTML = `${userGeo.symbol}${convertedUpfront.toLocaleString()} <span style="font-size:0.7em;color:var(--grey);">${userGeo.currency}</span>`;
+                }
+                if (totalAmount) {
+                    totalAmount.innerHTML = `${userGeo.symbol}${convertedTotal.toLocaleString()} <span style="font-size:0.7em;color:var(--grey);">${userGeo.currency}</span>`;
+                }
+            } else {
+                currencyBadge.classList.add('hidden');
+            }
+        }
+
+        async function initGeoCurrency() {
+            try {
+                const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
+                if (tz.includes('kolkata') || tz.includes('calcutta') || tz.includes('colombo')) {
+                    userGeo.country = 'IN'; userGeo.currency = 'INR'; userGeo.symbol = '₹'; userGeo.rate = DEFAULT_RATES.INR;
+                } else if (tz.includes('london')) {
+                    userGeo.country = 'GB'; userGeo.currency = 'GBP'; userGeo.symbol = '£'; userGeo.rate = DEFAULT_RATES.GBP;
+                } else if (tz.includes('europe/')) {
+                    userGeo.country = 'EU'; userGeo.currency = 'EUR'; userGeo.symbol = '€'; userGeo.rate = DEFAULT_RATES.EUR;
+                }
+                updateGeoPricingUI();
+
+                const [ipRes, rateRes] = await Promise.allSettled([
+                    fetch('https://ipapi.co/json/').then(r => r.ok ? r.json() : null),
+                    fetch('https://open.er-api.com/v6/latest/USD').then(r => r.ok ? r.json() : null)
+                ]);
+
+                if (ipRes.status === 'fulfilled' && ipRes.value && ipRes.value.currency) {
+                    userGeo.country = ipRes.value.country_code || userGeo.country;
+                    userGeo.currency = ipRes.value.currency;
+                    userGeo.symbol = CURRENCY_SYMBOLS[userGeo.currency] || userGeo.currency;
+                }
+
+                if (rateRes.status === 'fulfilled' && rateRes.value && rateRes.value.rates && rateRes.value.rates[userGeo.currency]) {
+                    userGeo.rate = rateRes.value.rates[userGeo.currency];
+                } else if (DEFAULT_RATES[userGeo.currency]) {
+                    userGeo.rate = DEFAULT_RATES[userGeo.currency];
+                }
+
+                userGeo.detected = true;
+                updateGeoPricingUI();
+            } catch (e) {
+                console.warn('Geo Currency warning:', e);
+            }
+        }
+
         loadPlan();
+        initGeoCurrency();
 
         // ─── Form submit → Razorpay ────────────────────────
         onboardForm.addEventListener('submit', async (e) => {
@@ -1036,6 +1132,13 @@
             payButton.disabled = true;
             payButtonText.textContent = 'Creating order...';
 
+            let payAmount = currentUpfront;
+            let payCurrency = 'USD';
+            if (userGeo.currency !== 'USD' && userGeo.rate) {
+                payAmount = Math.round(currentUpfront * userGeo.rate);
+                payCurrency = userGeo.currency;
+            }
+
             const API_BASE = window.location.port === '3001' ? '' : 'http://localhost:3001';
             const plan = PLANS[currentPlan];
             const endpoint = plan.apiType === 'landing' ? `${API_BASE}/api/create-landing-order` : `${API_BASE}/api/create-saas-order`;
@@ -1045,7 +1148,8 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        amount: currentUpfront,
+                        amount: payAmount,
+                        currency: payCurrency,
                         userName,
                         userEmail,
                         projectDescription: `Company: ${companyName} | Phone: ${userPhone} | Message: ${projectMessage}`
@@ -1064,16 +1168,36 @@
                 }
 
                 const options = {
-                    key: RAZORPAY_KEY_ID,
+                    key: data.key || RAZORPAY_KEY_ID,
                     amount: data.amount,
                     currency: data.currency,
-                    name: 'Khawaimedia',
-                    description: `${plan.name} — 50% Upfront ($${currentUpfront})`,
+                    name: 'Khawain.in',
+                    image: 'https://pub-475cca0b7414418d866128a4b30dfd97.r2.dev/images/ChatGPT%20Image%20Jul%2027%2C%202026%2C%2001_58_43%20PM.png',
+                    description: `${plan.name} — 50% Upfront (${userGeo.symbol}${payAmount} ${payCurrency})`,
                     order_id: data.orderId,
                     prefill: {
                         name: userName,
                         email: userEmail,
-                        contact: userPhone
+                        contact: userPhone,
+                        method: 'card'
+                    },
+                    config: {
+                        display: {
+                            blocks: {
+                                card_block: {
+                                    name: 'Pay with Card',
+                                    instruments: [{ method: 'card' }]
+                                },
+                                upi_block: {
+                                    name: 'Pay with UPI',
+                                    instruments: [{ method: 'upi' }]
+                                }
+                            },
+                            sequence: ['block.card_block', 'block.upi_block'],
+                            preferences: {
+                                show_default_blocks: true
+                            }
+                        }
                     },
                     notes: {
                         plan: currentPlan,
