@@ -73,7 +73,7 @@
                 var(--cream);
             min-height: 100vh;
             line-height: 1.5;
-            padding-top: 75px
+            padding-top: 0
         }
 
         a { color: inherit; text-decoration: none }
@@ -83,112 +83,32 @@
         .page {
             max-width: var(--maxw);
             margin: 0 auto;
-            padding: 22px
+            padding: 16px
         }
 
         @media(min-width:768px) {
-            .page { padding: 30px 38px }
+            .page { padding: 22px 26px }
         }
 
-        @media(min-width:1200px) {
-            .page { padding: 34px 48px }
-        }
-
-        .site-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 6px 12px 6px 20px;
-            position: fixed;
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            background: rgba(244, 239, 227, 0.75);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid rgba(10, 10, 10, 0.08);
-            border-radius: 999px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            width: calc(100% - 40px);
-            max-width: var(--maxw);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .brand-name {
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: 22px;
-            letter-spacing: -0.03em;
-            color: var(--ink);
-        }
-
-        .brand-name .dot {
-            color: var(--accent-orange);
-        }
-
-        .header-nav-center {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.4);
-            padding: 4px;
-            border-radius: 999px;
-            border: 1px solid rgba(10, 10, 10, 0.06);
-        }
-
-        @media(max-width: 767px) {
-            .header-nav-center { display: none; }
-        }
-
-        .nav-item {
-            padding: 8px 18px;
-            border-radius: 999px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--ink);
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.8);
-            border-color: rgba(10, 10, 10, 0.1);
-        }
-
-        .btn-book-call {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 22px;
-            border-radius: 999px;
-            background: var(--accent-orange);
-            color: #fff;
-            font-size: 14px;
-            font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn-book-call:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(255, 77, 0, 0.35);
+        /* Desktop only: 10% breathing space on each side (content = 80% width) */
+        @media(min-width:992px) {
+            .page {
+                width: 80%;
+                max-width: var(--maxw);
+                margin: 0 auto;
+                padding: 26px 0;
+            }
         }
 
         /* ONBOARDING LAYOUT */
         .onboard-section {
-            padding: 30px 0 80px;
+            padding: 18px 0 56px;
         }
 
         .onboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 32px;
+            gap: 20px;
             align-items: stretch;
         }
 
@@ -203,11 +123,11 @@
             background: var(--accent-orange);
             color: #fff;
             border-radius: var(--r-xl);
-            padding: 40px 36px;
+            padding: 28px 24px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 16px 40px rgba(255, 77, 0, 0.18);
-            min-height: 520px;
+            min-height: 430px;
         }
 
         .plan-eyebrow {
@@ -222,9 +142,9 @@
         .plan-name {
             font-family: 'Fraunces', serif;
             font-weight: 500;
-            font-size: clamp(28px, 3vw, 36px);
+            font-size: clamp(22px, 2.4vw, 30px);
             letter-spacing: -0.02em;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             line-height: 1.15;
         }
 
@@ -233,7 +153,7 @@
         }
 
         .plan-detail-section {
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
         .plan-detail-label {
@@ -254,8 +174,8 @@
         .plan-detail-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            gap: 9px;
+            font-size: 13px;
             opacity: 0.9;
         }
 
@@ -270,7 +190,7 @@
 
         .pricing-summary {
             margin-top: auto;
-            padding-top: 24px;
+            padding-top: 16px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -299,7 +219,7 @@
         }
 
         .pricing-value.total {
-            font-size: 28px;
+            font-size: 22px;
         }
 
         .pricing-note {
@@ -316,25 +236,25 @@
             -webkit-backdrop-filter: blur(14px) saturate(160%);
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow-lg);
-            padding: 36px;
+            padding: 26px 24px;
         }
 
         .form-panel-title {
             font-family: 'Fraunces', serif;
             font-weight: 500;
-            font-size: 24px;
+            font-size: 20px;
             letter-spacing: -0.02em;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .form-panel-sub {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--grey);
-            margin-bottom: 28px;
+            margin-bottom: 18px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 13px;
         }
 
         .form-label {
@@ -354,12 +274,12 @@
         .form-input,
         .form-textarea {
             width: 100%;
-            padding: 14px 16px;
+            padding: 11px 13px;
             border-radius: var(--r-md);
             background: #fff;
             border: 1px solid var(--line-2);
             font-family: 'Inter', sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             color: var(--ink);
             transition: border-color .2s ease, box-shadow .2s ease;
         }
@@ -373,7 +293,7 @@
 
         .form-textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 78px;
         }
 
         .btn-proceed {
@@ -382,14 +302,14 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 16px 24px;
+            padding: 13px 22px;
             border-radius: 999px;
             background: var(--ink);
             color: #fff;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             transition: transform .2s ease, box-shadow .2s ease;
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
         .btn-proceed:hover {
@@ -423,9 +343,13 @@
             color: var(--grey-light);
         }
 
-        .security-note svg {
-            width: 14px;
-            height: 14px;
+        .security-note img {
+            height: 16px;
+            width: auto;
+            max-width: 20px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-top: -4px;
         }
 
         .alert {
@@ -458,7 +382,7 @@
         /* SUCCESS STATE */
         .success-container {
             text-align: center;
-            padding: 60px 20px;
+            padding: 34px 14px;
         }
 
         .success-icon {
@@ -481,8 +405,8 @@
         .success-title {
             font-family: 'Fraunces', serif;
             font-weight: 500;
-            font-size: 32px;
-            margin-bottom: 12px;
+            font-size: 26px;
+            margin-bottom: 10px;
         }
 
         .success-message {
@@ -543,11 +467,11 @@
 
         /* FOOTER */
         .footer-card {
-            margin-top: 60px;
+            margin-top: 40px;
             border-radius: var(--r-2xl);
             background: var(--accent-orange);
             color: #fff;
-            padding: 48px 48px 36px;
+            padding: 34px 34px 26px;
             position: relative;
             overflow: hidden;
             border: none;
@@ -557,10 +481,10 @@
         .footer-top-grid {
             display: grid;
             grid-template-columns: 1.5fr repeat(4, 1fr);
-            gap: 30px;
-            padding-bottom: 40px;
+            gap: 20px;
+            padding-bottom: 26px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         @media(max-width: 991px) {
@@ -653,15 +577,15 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            padding-top: 30px;
-            gap: 20px;
+            padding-top: 22px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
         .footer-giant-wordmark {
             font-family: 'Inter', sans-serif;
             font-weight: 900;
-            font-size: clamp(64px, 12vw, 150px);
+            font-size: clamp(44px, 8vw, 104px);
             line-height: 0.85;
             letter-spacing: -0.05em;
             color: #fff;
@@ -730,20 +654,6 @@
 
 <body>
     <div class="page">
-        <!-- HEADER -->
-        <header class="site-header">
-            <a href="index.html" class="brand">
-                <span class="brand-name">Khawain<span class="dot">.</span></span>
-            </a>
-            <nav class="header-nav-center">
-                <a href="index.html" class="nav-item">Home</a>
-                <a href="index.html#showcase" class="nav-item">Work</a>
-                <a href="index.html#scrollColorSection" class="nav-item">Service</a>
-                <a href="contact.html" class="nav-item">Contact</a>
-            </nav>
-            <a href="contact.html" class="btn-book-call">Book a Call</a>
-        </header>
-
         <!-- ONBOARDING CONTENT -->
         <div id="mainContent">
             <div class="onboard-section">
@@ -824,11 +734,8 @@
                         </form>
 
                         <div class="security-note">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                            </svg>
-                            Secured by Razorpay · 256-bit encryption · 50% now, 50% on delivery
+                            <img src="https://i.ibb.co/twJnsnrW/craiyon-144501-image.png" alt="Razorpay" />
+                            Secured by Razorpay · 256-bit encryption.
                         </div>
                     </div>
                 </div>
@@ -874,13 +781,13 @@
                         <div>Langol type 3, F 43</div>
                         <div>Lamphelpat, Manipur</div>
                     </div>
-                    <a href="contact.html" class="btn-footer-getstarted">Get Started Today</a>
+                    <a href="#contact" class="btn-footer-getstarted">Get Started Today</a>
                 </div>
                 <div class="footer-nav-col">
                     <a href="index.html">Home</a>
                     <a href="index.html#scrollColorSection">Service</a>
                     <a href="our-works.html">Works</a>
-                    <a href="contact.html">Contact</a>
+                    <a href="#contact">Contact</a>
                 </div>
                 <div class="footer-nav-col">
                     <a href="404.html">404</a>
@@ -1040,7 +947,7 @@
 
         const DEFAULT_RATES = { USD: 1, INR: 83.5, EUR: 0.92, GBP: 0.79, CAD: 1.36, AUD: 1.52 };
         const CURRENCY_SYMBOLS = { USD: '$', INR: '₹', EUR: '€', GBP: '£', CAD: 'CA$', AUD: 'A$' };
-        const COUNTRY_NAMES = { IN: 'India 🇮🇳', GB: 'UK 🇬🇧', US: 'USA 🇺🇸', CA: 'Canada 🇨🇦', AU: 'Australia 🇦🇺', EU: 'Europe 🇪🇺' };
+        const COUNTRY_NAMES = { IN: 'India', GB: 'UK', US: 'USA', CA: 'Canada', AU: 'Australia', EU: 'Europe' };
 
         function updateGeoPricingUI() {
             const currencyBadge = document.getElementById('currencyBadge');
@@ -1052,9 +959,9 @@
                 const countryLabel = COUNTRY_NAMES[userGeo.country] || userGeo.country;
                 
                 currencyBadge.innerHTML = `
-                    <span>📍 Detected location: <strong>${countryLabel}</strong></span>
+                    <span>Region: <strong>${countryLabel}</strong></span>
                     <span>•</span>
-                    <span>Paying <strong>${userGeo.symbol}${convertedUpfront.toLocaleString()} ${userGeo.currency}</strong> (~${formatCurrency(currentUpfront)} USD)</span>
+                    <span>Amount payable: <strong>${userGeo.symbol}${convertedUpfront.toLocaleString()} ${userGeo.currency}</strong> (≈${formatCurrency(currentUpfront)} USD)</span>
                 `;
                 currencyBadge.classList.remove('hidden');
 
@@ -1298,6 +1205,7 @@
             `;
         }
     </script>
+<script src="contact-popup.js"></script>
 </body>
 
 </html>

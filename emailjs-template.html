@@ -1,0 +1,89 @@
+<div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #0A0A0A; color: #FFFFFF; padding: 30px 15px;">
+  <div style="max-width: 580px; margin: 0 auto; background: #141414; border: 1px solid #262626; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
+
+    <!-- HEADER BAR -->
+    <div style="padding: 24px 30px; background: #1A1A1A; border-bottom: 1px solid #262626; display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px;">
+        Khawain<span style="color: #FF4D00;">.</span>
+      </div>
+      <div style="padding: 5px 12px; background: rgba(255, 77, 0, 0.15); border: 1px solid rgba(255, 77, 0, 0.4); border-radius: 20px; font-size: 11px; font-weight: 700; color: #FF4D00; text-transform: uppercase;">
+        New Contact Lead
+      </div>
+    </div>
+
+    <!-- INTRO STATEMENT -->
+    <div style="padding: 28px 30px 15px 30px;">
+      <div style="font-size: 15px; color: #E7DFC9; line-height: 1.5;">
+        A message by <strong style="color: #FFFFFF;">{{name}}</strong> has been received. Kindly respond at your earliest convenience.
+      </div>
+    </div>
+
+    <!-- DASHED CARD CONTAINING DETAILS -->
+    <div style="margin: 0 30px 25px 30px; padding: 20px; background-color: #0A0A0A; border: 1px dashed #333333; border-radius: 12px;">
+      <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td style="vertical-align: top; width: 50px;">
+            <div style="padding: 10px; background-color: rgba(255, 77, 0, 0.1); border: 1px solid rgba(255, 77, 0, 0.2); border-radius: 10px; font-size: 24px; text-align: center;" role="img">
+              👤
+            </div>
+          </td>
+          <td style="vertical-align: top; padding-left: 15px;">
+            <div style="color: #FFFFFF; font-size: 17px; font-weight: 700; margin-bottom: 2px;">
+              {{name}}
+            </div>
+            <div style="color: #6B6B6B; font-size: 12px; margin-bottom: 12px;">
+              Submitted on {{time}}
+            </div>
+
+            <!-- CONTACT DETAILS -->
+            <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 15px; font-size: 13px;">
+              <tr>
+                <td style="padding: 4px 0; color: #9A9A9A; width: 85px; font-weight: 600;">Channel:</td>
+                <td style="padding: 4px 0; color: #FFFFFF; font-weight: 700;">{{channel}}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #9A9A9A; width: 85px; font-weight: 600;">Contact:</td>
+                <td style="padding: 4px 0; color: #B6FF3C; font-weight: 600;">{{contact_value}}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #9A9A9A; font-weight: 600;">Email:</td>
+                <td style="padding: 4px 0; color: #E7DFC9;">
+                  <a href="mailto:{{email}}" style="color: #B6FF3C; text-decoration: none;">{{email}}</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #9A9A9A; font-weight: 600;">Phone:</td>
+                <td style="padding: 4px 0; color: #E7DFC9;">{{phone}}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #9A9A9A; font-weight: 600;">Handle:</td>
+                <td style="padding: 4px 0; color: #E7DFC9;">{{handle}}</td>
+              </tr>
+              <tr>
+                <td style="padding: 4px 0; color: #9A9A9A; font-weight: 600;">Company:</td>
+                <td style="padding: 4px 0; color: #E7DFC9;">{{company}}</td>
+              </tr>
+            </table>
+
+            <!-- MESSAGE CONTENT -->
+            <div style="font-size: 14px; color: #E7DFC9; line-height: 1.6; padding-top: 12px; border-top: 1px solid #222222; white-space: pre-wrap;">
+              {{message}}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ACTION BUTTON -->
+    <div style="padding: 0 30px 30px 30px; text-align: center;">
+      <a href="mailto:{{contact_value}}?subject=Re:%20Inquiry%20from%20Khawain" target="_blank" style="display: inline-block; padding: 12px 26px; background-color: #FF4D00; color: #FFFFFF; font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 8px;">
+        Reply to {{name}} ↗
+      </a>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="padding: 18px 30px; background: #0A0A0A; border-top: 1px solid #1F1F1F; font-size: 11px; color: #6B6B6B; text-align: center;">
+      Sent via Khawain Website Contact Form
+    </div>
+  </div>
+</div>
